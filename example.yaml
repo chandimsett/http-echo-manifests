@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: apple-serverless
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - image: 127.0.0.1:5000/http-echo:latest
+#          args:
+#            - "-text=apple"
+          ports:
+            - containerPort: 5678
