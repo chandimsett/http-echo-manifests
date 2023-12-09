@@ -8,6 +8,7 @@ spec:
     spec:
       containers:
         - image: 127.0.0.1:5000/http-echo:latest
+          imagePullPolicy: Always
 #          args:
 #            - "-text=apple"
           ports:
