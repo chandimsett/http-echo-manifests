@@ -1,0 +1,36 @@
+{{- range .Values.inferenceEngineServerless}}
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: {{.name}}
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: {{.minScale | default 0| quote}}
+        autoscaling.knative.dev/target: {{.target | default 100 | quote}}
+    spec:
+      {{if .affinity }}
+      affinity:
+        {{ toYaml .affinity | nindent  8}}
+      {{end}}
+      containers:
+        - image: {{.image}}
+          {{ if .MICROSERVICE_NAME }}
+          env:
+            - name: MICROSERVICE_NAME
+              value: {{.MICROSERVICE_NAME}}
+          {{ end }}
+          {{ if .resources }}
+          resources:
+            requests:
+              cpu: {{.resources.requests.cpu}}
+              memory: {{.resources.requests.memmory}}
+            limits:
+              cpu: {{.resources.limits.cpu }}
+              memory: {{.resources.limits.memory}}
+          {{ end }}
+          ports:
+            - containerPort: 5678
+---
+{{- end}}

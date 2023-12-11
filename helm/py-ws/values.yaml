@@ -1,0 +1,3 @@
+inferenceEngineServerless:
+  - name: http-echo-serverless
+    image: docker.io/chandimsett/http-echo:latest
