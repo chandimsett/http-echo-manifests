@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/min-scale:  "2"
     spec:
       containers:
-        - image: 127.0.0.1:5000/http-echo:latest
+        - image: docker.io/http-echo:latest
           imagePullPolicy: Always
 #          args:
 #            - "-text=apple"
