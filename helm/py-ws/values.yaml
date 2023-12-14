@@ -5,3 +5,4 @@ inferenceEngineServerless:
   - name: http-echo-serverless2
     image: docker.io/chandimsett/http-echo:latest
     minScale: 1
+BUILD_VERSION: 1
